@@ -4124,3 +4124,210 @@ body.is-preload #header.alt .logo {
 	/* Centra el texto respecto a su columna de 100px */
 	color: #333 !important;
 }
+
+/* Contenedor Grid Principal */
+.contenedor-formulario-grid {
+	display: grid !important;
+	grid-template-columns: repeat(2, 1fr) !important;
+	column-gap: 50px !important;
+	row-gap: 25px !important;
+	width: 100% !important;
+	max-width: 1000px !important;
+	margin: 0 auto !important;
+	padding: 20px !important;
+	box-sizing: border-box !important;
+	font-family: Arial, sans-serif !important;
+}
+
+/* Campos en fila (2 columnas) */
+.grupo-campo {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+.grupo-campo label {
+	font-size: 18px !important;
+
+	text-align: left !important;
+	font-weight: normal !important;
+	white-space: nowrap !important;
+	flex-shrink: 0 !important;
+}
+
+.grupo-campo input[type="text"],
+.grupo-campo input[type="email"],
+.grupo-campo input[type="date"],
+.grupo-campo select {
+	width: 65% !important;
+	height: 45px !important;
+	padding: 0 10px !important;
+	font-size: 16px !important;
+	border: 1px solid #cccccc !important;
+	border-radius: 8px !important;
+	background-color: #f9f9f9 !important;
+	box-sizing: border-box !important;
+}
+
+/* Forzado a campos de Ancho Completo */
+.ancho-completo {
+	grid-column: span 2 !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+}
+
+.ancho-completo label {
+	margin-bottom: 10px !important;
+	font-size: 18px !important;
+	font-weight: normal !important;
+}
+
+.ancho-completo input[type="text"],
+.ancho-completo select {
+	width: 100% !important;
+	height: 45px !important;
+}
+
+/* Estilos de Instrucciones de Archivo */
+.bloque-subida {
+	margin-top: 15px !important;
+}
+
+.texto-instruccion {
+	font-size: 16px !important;
+	color: #444 !important;
+	text-align: left !important;
+	margin-bottom: 15px !important;
+	line-height: 1.4 !important;
+}
+
+/* Caja gris discontinua (Zona de Arrastre/Drop) */
+.zona-drop {
+	width: 100% !important;
+	border: 2px dashed #999999 !important;
+	border-radius: 12px !important;
+	background-color: #f5f5f5 !important;
+	padding: 30px 20px !important;
+	text-align: center !important;
+	box-sizing: border-box !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* Ocultar el input file nativo feo */
+.zona-drop input[type="file"] {
+	display: none !important;
+}
+
+/* Botón azul central "SUBIR ARCHIVO" */
+.boton-subir {
+	display: inline-block !important;
+	background-color: #0066ff !important;
+	color: #ffffff !important;
+	font-weight: bold !important;
+	font-size: 16px !important;
+	padding: 12px 35px !important;
+	border-radius: 6px !important;
+	cursor: pointer !important;
+	margin: 0 0 15px 0 !important;
+	text-transform: uppercase !important;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.boton-subir:hover {
+	background-color: #0052cc !important;
+}
+
+/* Texto de formatos aceptados pequeño */
+.formatos-permitidos {
+	font-size: 13px !important;
+	color: #777777 !important;
+	margin: 0 !important;
+}
+
+/* Contenedor y Botón de Enviar Final (Color Vino) */
+.contenedor-boton-enviar {
+	align-items: center !important;
+	margin-top: 35px !important;
+}
+
+.btn-enviar-reporte {
+	background-color: #923d49 !important;
+	/* Tono vino exacto de la imagen */
+
+	font-size: 18px !important;
+	font-weight: bold !important;
+	padding: 14px 50px !important;
+	border: none !important;
+	border-radius: 8px !important;
+	cursor: pointer !important;
+	text-transform: uppercase !important;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+	transition: background 0.2s ease !important;
+}
+
+.btn-enviar-reporte:hover {
+	background-color: #76303a !important;
+}
+
+/* Reutiliza el contenedor Grid que ya tienes o asegúrate de tener este bloque activo */
+
+
+/* Estilo base para las etiquetas y los inputs alineados */
+.grupo-persona {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+.grupo-persona label {
+	font-size: 18px !important;
+	color: #444 !important;
+	text-align: left !important;
+	font-weight: normal !important;
+	margin: 0 !important;
+	padding-right: 15px !important;
+	white-space: nowrap !important;
+	flex-shrink: 0 !important;
+}
+
+.grupo-personainput[type="text"],
+.grupo-persona input[type="date"] {
+	width: 65% !important;
+	/* Mismo tamaño estandarizado para los cuadros cortos */
+	height: 45px !important;
+	padding: 0 10px !important;
+	font-size: 16px !important;
+	border: 1px solid #cccccc !important;
+	border-radius: 4px !important;
+	/* Cuadrados o ligeramente redondeados según tu diseño anterior */
+	background-color: #ffffff !important;
+	box-sizing: border-box !important;
+}
+
+/* Variante exclusiva para el campo Domicilio (Ancho completo manteniendo fila) */
+.ancho-completo-horizontal {
+	grid-column: span 2 !important;
+	/* Abarca el espacio de las dos columnas */
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	width: 100% !important;
+}
+
+/* Ajuste específico del cuadro de texto de Domicilio para ocupar todo el resto de la fila */
+.ancho-completo-horizontal input[type="text"] {
+	flex-grow: 1 !important;
+	/* Se estira magnéticamente ocupando el 100% del espacio restante */
+	width: auto !important;
+	margin-left: 10px !important;
+}
