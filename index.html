@@ -14,6 +14,7 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<script type="module" src="assets/js/acciones.js"></script>
 </head>
 
 <body class="is-preload">
@@ -27,8 +28,8 @@
 			<h1>Registro de reporte cibernético y extorsión</h1>
 			<p>Todos los datos marcados con (*) son obligatorios<br />
 		</header>
+		<!-- <button id="btnGuardar">Guardar</button> -->
 
-		<!-- Nav -->
 		<nav id="nav">
 			<ul>
 				<li><a></a></li>
@@ -52,63 +53,67 @@
 							¿Opta por mantener su identidad bajo anonimato al presentar el reporte? *
 						</div>
 						<label class="celda-radio">
-							<input type="radio" name="anonimato" value="si">
+							<input type="radio" name="anonimato" value="esconder" checked onchange="mostrarDatos()">
 							<span class="circulo-personalizado"></span>
 						</label>
 						<label class="celda-radio">
-							<input type="radio" name="anonimato" value="no" checked>
+							<input type="radio" name="anonimato" value="mostrar" onchange="mostrarDatos()">
 							<span class="circulo-personalizado"></span>
 						</label>
 					</div>
-					<div class="fila-pregunta">
-						<div class="texto-pregunta">
-							¿Es usted persona física?
+					<div id="seccion-datos-personales">
+						<div class="fila-pregunta">
+							<div class="texto-pregunta">
+								¿Es usted persona física?
+							</div>
+							<label class="celda-radio">
+								<input type="radio" name="persona_fisica" value="si" checked onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
+							<label class="celda-radio">
+								<input type="radio" name="persona_fisica" value="no" onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
 						</div>
-						<label class="celda-radio">
-							<input type="radio" name="persona_fisica" value="si" checked>
-							<span class="circulo-personalizado"></span>
-						</label>
-						<label class="celda-radio">
-							<input type="radio" name="persona_fisica" value="no">
-							<span class="circulo-personalizado"></span>
-						</label>
-					</div>
 
-					<div class="fila-pregunta">
-						<div class="texto-pregunta">
-							¿Esto te pasó a ti?
+						<div class="fila-pregunta">
+							<div class="texto-pregunta">
+								¿Esto te pasó a ti?
+							</div>
+							<label class="celda-radio">
+								<input type="radio" name="te_paso_a_ti" value="si" onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
+							<label class="celda-radio">
+								<input type="radio" name="te_paso_a_ti" value="no" onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
 						</div>
-						<label class="celda-radio">
-							<input type="radio" name="persona" value="si" checked>
-							<span class="circulo-personalizado"></span>
-						</label>
-						<label class="celda-radio">
-							<input type="radio" name="persona" value="no">
-							<span class="circulo-personalizado"></span>
-						</label>
-					</div>
 
-					<div class="fila-pregunta">
-						<div class="texto-pregunta">
-							¿Es usted extranjero?
+						<div class="fila-pregunta">
+							<div class="texto-pregunta">
+								¿Es usted extranjero?
+							</div>
+							<label class="celda-radio">
+								<input type="radio" name="extranjero" value="si" onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
+							<label class="celda-radio">
+								<input type="radio" name="extranjero" value="no" onchange="mostrarDatos()">
+								<span class="circulo-personalizado"></span>
+							</label>
 						</div>
-						<label class="celda-radio">
-							<input type="radio" name="extranjero" value="si">
-							<span class="circulo-personalizado"></span>
-						</label>
-						<label class="celda-radio">
-							<input type="radio" name="extranjero" value="no" checked>
-							<span class="circulo-personalizado"></span>
-						</label>
 					</div>
-
 				</div>
 			</section>
-			<section id="zero" class="main special">
+			<!---------------------------------------------------------Aquí inician los formularios------------------------------------------------------------>
+			<search id="formularioPA" class="main special">
+
 				<header class="major">
 					<h2>Datos persona afectada</h2>
 				</header>
-				<div class="contenedor-formulario-grid">
+
+				<div id="formularioPA" class="contenedor-formulario-grid">
 					<div class="grupo-campo">
 						<label for="nombre_afectado">Fecha Nacimiento*:</label>
 						<input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
@@ -128,15 +133,16 @@
 					<div class="grupo-campo">
 						<label for="telefono_afectado">Teléfono*:</label>
 						<input type="text" id="telefono_afectado" name="telefono_afectado" required>
-			</section>
+					</div>
+				</div>
+			</search>
 
-
-			<search id="first" class="main special">
+			<search id="formulario-reportante" class="main special">
 				<header class="major">
 					<h2>Datos de la persona que reporta</h2>
 				</header>
 
-				<div class="contenedor-formulario-grid">
+				<div id="formulario-reportante" class="contenedor-formulario-grid">
 
 					<div class="grupo-campo">
 						<label for="nombre_reportante">Nombre*:</label>
@@ -144,36 +150,29 @@
 					</div>
 
 					<div class="grupo-campo">
-						<label for="apellido_reportante">Apellido*:</label>
+						<label for="apellido_reportante">Apellido Paterno*:</label>
 						<input type="text" id="apellido_reportante" name="apellido_reportante" required>
 					</div>
-
 					<div class="grupo-campo">
-						<label for="correo_reportante">Correo*:</label>
-						<input type="email" id="correo_reportante" name="correo_reportante" required>
-					</div>
-
-					<div class="grupo-campo">
-						<label for="telefono_reportante">Teléfono*:</label>
-						<input type="text" id="telefono_reportante" name="telefono_reportante" required>
+						<label for="apellidoM_reportante">Apellido Materno*:</label>
+						<input type="text" id="apellidoM_reportante" name="apellidoM_reportante" required>
 					</div>
 
 				</div>
+			</search>
+
+			<div id="zero" class="main special">
 				<section id="first" class="main special">
 					<header class="major">
 						<h2>Explique lo que sucedió aquí</h2>
 					</header>
 
-					<div class="contenedor-formulario-grid">
+					<form id="formReporte">
 
 						<div class="grupo-campo">
 							<label for="tipo_reporte">Tipo de Reporte*:</label>
 							<select id="tipo_reporte" name="tipo_reporte">
 								<option value="">Seleccione</option>
-								<option value="ciberacoso">Ciberacoso</option>
-								<option value="extorsion">Extorsión</option>
-								<option value="suplantacion">Suplantación de identidad</option>
-								<option value="otro">Otro</option>
 							</select>
 						</div>
 
@@ -181,10 +180,6 @@
 							<label for="tipoDelito">Tipo de delito*:</label>
 							<select id="tipoDelito" name="tipoDelito" required>
 								<option value="">Seleccione</option>
-								<option value="ciberacoso">CiberDelito</option>
-								<option value="extorsion">Extorsión</option>
-								<option value="suplantacion">Secuestro</option>
-								<option value="otro">Otro</option>
 							</select>
 						</div>
 
@@ -196,9 +191,7 @@
 						<div class="grupo-campo">
 							<label for="municipio">Municipio*:</label>
 							<select id="municipio" name="municipio" required>
-								<option value="">Seleccione</option>
-								<option value="xalapa">Xalapa</option>
-								<option value="veracruz">Veracruz</option>
+								<option value="">Seleccione un municipio</option>
 							</select>
 						</div>
 
@@ -208,8 +201,8 @@
 						</div>
 
 						<div class="grupo-campo">
-							<label for="fecha">Fecha de los hechos*:</label>
-							<input type="date" id="fecha" name="fecha" required>
+							<label for="fechaHechos">Fecha de los hechos*:</label>
+							<input type="date" id="fechaHechos" name="fechaHechos" required>
 						</div>
 
 						<div class="grupo-campo ancho-completo">
@@ -224,8 +217,8 @@
 						</div>
 
 						<div class="grupo-campo ancho-completo">
-							<label for="descripcion">¿Cómo ocurrió?*</label>
-							<input type="text" id="descripcion" name="descripcion" required>
+							<label for="como_ocurrio">¿Cómo ocurrió?*</label>
+							<textarea type="text" id="como_ocurrio" name="como_ocurrio" required></textarea>
 						</div>
 
 						<div class="grupo-campo ancho-completo">
@@ -240,102 +233,86 @@
 								de los siguientes formatos permitidos (10MB):</p>
 
 							<div class="zona-drop">
-								<label for="file_input" class="boton-subir">SUBIR ARCHIVO</label>
+								<!-- Un solo input con todos los formatos aceptados -->
 								<input type="file" id="file_input" name="evidencia_archivo"
-									accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.mp3,.mp4">
-								<p class="formatos-permitidos">Formatos aceptados: Imágenes, PDFs, Word, Audio y
-									Video
-									(.jpg, .png, .pdf, .docx, .mp3, .mp4)</p>
-							</div>
-						</div>
+									accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.mp3,.mp4" multiple
+									style="display: none;" />
 
+								<label for="file_input" class="boton-subir">SUBIR ARCHIVO</label>
+
+								<p class="formatos-permitidos">
+									Formatos aceptados: Imágenes, PDFs, Word, Audio y Video (.jpg, .png, .pdf, .docx,
+									.mp3, .mp4)
+								</p>
+
+								<!-- ÁREA DE VISTA PREVIA -->
+								<div id="preview_contenedor" class="preview-contenedor" style="display: none;">
+									<div class="preview-header">
+										<!-- Imagen en miniatura -->
+										<img id="preview_img" src="" alt="Vista previa" style="display: none;" />
+
+										<!-- Icono para otros archivos -->
+										<div id="preview_icon" class="preview-icon" style="display: none;">📄</div>
+
+										<!-- Información del archivo -->
+										<div class="preview-info">
+											<span id="preview_nombre" class="preview-nombre"></span>
+											<span id="preview_tamano" class="preview-tamano"></span>
+										</div>
+
+										<!-- Botón para eliminar -->
+										<button type="button" id="btnEliminarArchivo"
+											class="btn-eliminar-archivo">Eliminar</button>
+									</div>
+								</div>
+							</div>
+						</div> <!-- Cierre agregado que faltaba -->
 						<div class="grupo-campo ancho-completo contenedor-boton-enviar">
-							<button type="submit" class="btn-enviar-reporte" style="color: #ffffff !important;">ENVIAR
+							<button type="submit" id="btnGuardar" class="btn-enviar-reporte"
+								style="color: #ffffff !important;">ENVIAR
 								REPORTE</button>
 						</div>
-
-					</div>
+					</form>
 				</section>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
 				<!-- DATOS DE LA PERSONA AFECTADA -->
-				<section id="second" class="main special">
-					<header class="major">
-						<h2>Datos de la persona afectada</h2>
-					</header>
-
-					<div class="contenedor-formulario-grid">
-
-						<div class="grupo-persona">
-							<label for="curp">CURP:</label>
-							<input type="text" id="curp" name="curp">
-						</div>
-
-						<div class="grupo-persona">
-							<label for="materno">Apellido materno*:</label>
-							<input type="text" id="materno" name="materno" required>
-						</div>
-
-						<div class="grupo-persona">
-							<label for="nombre">Nombre*:</label>
-							<input type="text" id="nombre" name="nombre" required>
-						</div>
-
-						<div class="grupo-persona">
-							<label for="fechaNacimiento">Fecha de nacimiento*:</label>
-							<input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-						</div>
-
-						<div class="grupo-persona">
-							<label for="paterno">Apellido paterno*:</label>
-							<input type="text" id="paterno" name="paterno" required>
-						</div>
-
-						<div class="grupo-persona">
-							<label for="telefono">Teléfono*:</label>
-							<input type="text" id="telefono" name="telefono" required>
-						</div>
-
-						<div class="grupo-persona ancho-completo-horizontal">
-							<label for="Domicilio">Domicilio*:</label>
-							<input type="text" id="Domicilio" name="Domicilio" required>
-						</div>
-
-					</div>
+				<section>
+					<h2>Etiam feugiat</h2>
+					<dl class="alt">
+						<dt>Address</dt>
+						<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
+						<dt>Phone</dt>
+						<dd>(000) 000-0000 x 0000</dd>
+						<dt>Email</dt>
+						<dd><a href="#">information@untitled.tld</a></dd>
+					</dl>
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a>
+						</li>
+						<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a>
+						</li>
+						<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a>
+						</li>
+						<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a>
+						</li>
+					</ul>
 				</section>
+				<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a></p>
+			</footer>
 		</div>
-		<!-- Footer -->
-		<footer id="footer">
 
-			<section>
-				<h2>Etiam feugiat</h2>
-				<dl class="alt">
-					<dt>Address</dt>
-					<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-					<dt>Phone</dt>
-					<dd>(000) 000-0000 x 0000</dd>
-					<dt>Email</dt>
-					<dd><a href="#">information@untitled.tld</a></dd>
-				</dl>
-				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a>
-					</li>
-					<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-					<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a>
-					</li>
-				</ul>
-			</section>
-			<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a></p>
-		</footer>
-	</div>
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 </body>
 

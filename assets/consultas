@@ -1,0 +1,191 @@
+const db = getFirestore();
+
+
+const listaMunicipios = ["Acajete", "Acatlán", "Acayucan", "Actopan", "Acula", "Acultzingo", "Agua Dulce", "Álamo Temapache",
+    "Alpatláhuac", "Alto Lucero", "Altotonga", "Alvarado", "Amatitlán", "Amatlán de los Reyes", "Ángel R. Cabada", "La Antigua",
+    "Apazapan", "Aquila", "Astacinga", "Atlahuilco", "Atoyac", "Atzacan", "Atzalan", "Ayahualulco", "Banderilla", "Benito Juárez",
+    "Boca del Río", "Calcahualco", "Camarón", "Camerino Z. Mendoza", "Carlos A. Carrillo", "Carrillo Puerto", "Castillo de Teayo",
+    "Catemaco", "Cazones", "Cerro Azul", "Chacaltianguis", "Chalma", "Chiconamel", "Chiconquiaco", "Chicontepec", "Chinameca", "Chinampa",
+    "Las Choapas", "Chocamán", "Chontla", "Chumatlán", "Citlaltépetl", "Coacoatzintla", "Coahuitlán", "Coatepec", "Coatzacoalcos", "Coatzintla",
+    "Coetzala", "Colipa", "Comapa", "Córdoba", "Cosamaloapan", "Cosautlán", "Coscomatepec", "Cosoleacaque", "Cotaxtla", "Coxquihui", "Coyutla",
+    "Cuichapa", "Cuitláhuac", "Emiliano Zapata", "Espinal", "Filomeno Mata", "Fortín", "Gutiérrez Zamora", "Hidalgotitlán", "El Higo", "Huatusco",
+    "Huayacocotla", "Hueyapan", "Huiloapan", "Ignacio de la Llave", "Ilamatlán", "Isla", "Ixcatepec", "Ixhuacán", "Ixhuatlancillo", "Ixhuatlán de Madero",
+    "Ixhuatlán del Café", "Ixhuatlán del Sureste", "Ixmatlahuacan", "Ixtaczoquitlán", "Jalacingo", "Jalcomulco", "Jáltipan", "Jamapa", "Jesús Carranza",
+    "Jilotepec", "José Azueta", "Juan Rodríguez Clara", "Juchique", "Landero y Coss", "Lerdo de Tejada", "Magdalena", "Maltrata", "Manlio Fabio Altamirano",
+    "Mariano Escobedo", "Martínez de la Torre", "Mecatlán", "Mecayapan", "Medellín", "Miahuatlán", "Las Minas", "Minatitlán", "Misantla", "Mixtla",
+    "Moloacán", "Nanchital", "Naolinco", "Naranjal", "Naranjos Amatlán", "Nautla", "Nogales", "Oluta", "Omealca", "Orizaba", "Otatitlán", "Oteapan",
+    "Ozuluama", "Pajapan", "Pánuco", "Papantla", "Paso de Ovejas", "Paso del Macho", "La Perla", "Perote", "Platón Sánchez", "Playa Vicente", "Poza Rica",
+    "Pueblo Viejo", "Puente Nacional", "Rafael Delgado", "Rafael Lucio", "Los Reyes", "Río Blanco", "Saltabarranca", "San Andrés Tenejapan", "San Andrés Tuxtla",
+    "San Juan Evangelista", "San Rafael", "Santiago Sochiapan", "Santiago Tuxtla", "Sayula", "Sochiapa", "Soconusco", "Soledad Atzompa", "Soledad de Doblado",
+    "Soteapan", "Tamalín", "Tamiahua", "Tampico Alto", "Tancoco", "Tantima", "Tantoyuca", "Tatahuicapan", "Tatatila", "Tecolutla", "Tehuipango", "Tempoal",
+    "Tenampa", "Tenochtitlán", "Teocelo", "Tepatlaxco", "Tepetlán", "Tepetzintla", "Tequila", "Texcatepec", "Texhuacán", "Texistepec", "Tezonapa", "Tierra Blanca",
+    "Tihuatlán", "Tlachichilco", "Tlacojalpan", "Tlacolulan", "Tlacotalpan", "Tlacotepec de Mejía", "Tlalixcoyan", "Tlalnelhuayocan", "Tlaltetela", "Tlapacoyan",
+    "Tlaquilpa", "Tlilapan", "Tomatlán", "Tonayán", "Totutla", "Tres Valles", "Tuxpan", "Tuxtilla", "Úrsulo Galván", "Uxpanapa", "Vega de Alatorre", "Veracruz",
+    "Las Vigas",
+    "Villa Aldama", "Xalapa", "Xico", "Xoxocotla", "Yanga", "Yecuatla", "Zacualpan", "Zaragoza", "Zentla", "Zongolica", "Zontecomatlán", "Zozocolco"];
+
+async function guardarMunicipio() {
+    const boton = document.getElementById("btnGuardar");
+    const textoOriginal = boton.textContent;
+
+
+    boton.textContent = 'Guardando...';
+    boton.disabled = true;
+
+    try {
+        const docRef = doc(db, "Municipios", "Municipios_Ver");
+        await setDoc(docRef, {
+            lista: listaMunicipios
+        });
+        alert("Municipios guardados correctamente");
+        boton.textContent = "Completado";
+
+    } catch (error) {
+        console.error("Error al guardar municipios: ", error);
+        alert("Error al guardar municipios. Revisa la consola para más detalles.");
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    }
+}
+const boton = document.getElementById("btnGuardar");
+boton.addEventListener("click", () => {
+    guardarMunicipio();
+});
+const TipoDelito = ["CiberDelito", "Extorsión", "Secuestro",
+    "Otro"];
+
+
+async function guardarReporte() {
+    const boton = document.getElementById("btnGuardar");
+    const textoOriginal = boton.textContent;
+
+
+    boton.textContent = 'Guardando...';
+    boton.disabled = true;
+
+    try {
+        const docRef = doc(db, "Delitos", "tiposDelitos");
+        await setDoc(docRef, {
+            lista: TipoDelito
+        });
+        alert("Tipos de delitos guardados correctamente");
+        boton.textContent = "Completado";
+
+    } catch (error) {
+        console.error("Error al guardar tipos de delitos: ", error);
+        alert("Error al guardar tipos de delitos. Revisa la consola para más detalles.");
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    }
+}
+
+/*
+const db = getFirestore();
+
+const TipodeReporte = ["Acoso / intimidación", "Seguridad infantil / explotación", "Aseo o seguridad infantil",
+    "imágenes de explotación infantil", "Falsificación", "Difamación criminal", "Drogas / estupefacientes",
+    "Fraude financiero / estafa", "Armas de fuego / armas", "Fugitivos o delincuentes convictos", "Cuenta pirateada",
+    "Discurso de odio / delito", "Homicidio / asesinato", "Trata de personas", "Violación de los derechos de propiedad intelectual",
+    "Comercio ilícito", "Suplantación de identidad de cuenta", "Imágenes íntimas no consentidas de un adulto",
+    "Prostitución", "Robo / hurto", "Delito sexual / agresión sexual", "Extorsión sexual (sextorsión)",
+    "Suicidio o autolesión", "Actividad terrorista", "Amenazas de violencia", "Otro problema"
+];
+
+async function guardarReporte() {
+    const boton = document.getElementById("btnGuardar");
+    const textoOriginal = boton.textContent;
+
+
+    boton.textContent = 'Guardando...';
+    boton.disabled = true;
+
+    try {
+        const docRef = doc(db, "Delitos", "tiposDelitos");
+        await setDoc(docRef, {
+            lista: TipodeReporte
+        });
+        alert("Tipos de delitos guardados correctamente");
+        boton.textContent = "Completado";
+
+    } catch (error) {
+        console.error("Error al guardar tipos de delitos: ", error);
+        alert("Error al guardar tipos de delitos. Revisa la consola para más detalles.");
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    }
+}
+const boton = document.getElementById("btnGuardar");
+boton.addEventListener("click", () => {
+    guardarMunicipio();
+});
+
+
+
+const TipodeReporte = ["Acoso / intimidación", "Seguridad infantil / explotación", "Aseo o seguridad infantil",
+    "imágenes de explotación infantil", "Falsificación", "Difamación criminal", "Drogas / estupefacientes",
+    "Fraude financiero / estafa", "Armas de fuego / armas", "Fugitivos o delincuentes convictos", "Cuenta pirateada",
+    "Discurso de odio / delito", "Homicidio / asesinato", "Trata de personas", "Violación de los derechos de propiedad intelectual",
+    "Comercio ilícito", "Suplantación de identidad de cuenta", "Imágenes íntimas no consentidas de un adulto",
+    "Prostitución", "Robo / hurto", "Delito sexual / agresión sexual", "Extorsión sexual (sextorsión)",
+    "Suicidio o autolesión", "Actividad terrorista", "Amenazas de violencia", "Otro problema"
+];
+
+async function guardarReporte() {
+    const boton = document.getElementById("btnGuardar");
+    const textoOriginal = boton.textContent;
+
+
+    boton.textContent = 'Guardando...';
+    boton.disabled = true;
+
+    try {
+        const docRef = doc(db, "Delitos", "tiposDelitos");
+        await setDoc(docRef, {
+            lista: TipodeReporte
+        });
+        alert("Tipos de delitos guardados correctamente");
+        boton.textContent = "Completado";
+
+    } catch (error) {
+        console.error("Error al guardar tipos de delitos: ", error);
+        alert("Error al guardar tipos de delitos. Revisa la consola para más detalles.");
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    }
+}
+const boton = document.getElementById("btnGuardar");
+boton.addEventListener("click", () => {
+    guardarReporte();
+});
+
+const TipoDelito = ["CiberDelito", "Extorsión", "Secuestro",
+    "Otro"];
+
+
+async function guardarReporte() {
+    const boton = document.getElementById("btnGuardar");
+    const textoOriginal = boton.textContent;
+
+
+    boton.textContent = 'Guardando...';
+    boton.disabled = true;
+
+    try {
+        const docRef = doc(db, "Delitos", "tiposDelitos");
+        await setDoc(docRef, {
+            lista: TipodeReporte
+        });
+        alert("Tipos de delitos guardados correctamente");
+        boton.textContent = "Completado";
+
+    } catch (error) {
+        console.error("Error al guardar tipos de delitos: ", error);
+        alert("Error al guardar tipos de delitos. Revisa la consola para más detalles.");
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    }
+}
+const boton = document.getElementById("btnGuardar");
+boton.addEventListener("click", () => {
+    guardarReporte();
+});  */

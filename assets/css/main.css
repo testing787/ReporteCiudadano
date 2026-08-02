@@ -1525,3 +1525,54 @@
 
 	}
 }
+
+/* Limitar CUALQUIER imagen dentro del área de vista previa */
+#preview_contenedor img,
+.preview-thumb,
+#preview_img {
+    width: 60px !important;        /* Ancho fijo de la miniatura */
+    height: 60px !important;       /* Alto fijo de la miniatura */
+    max-width: 60px !important;
+    max-height: 60px !important;
+    object-fit: cover !important;  /* Para que no se deforme la foto */
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    flex-shrink: 0;                /* Evita que se aplaste o estire en Flexbox */
+}
+
+/* Formato del contenedor contenedor contenedor de las vistas previas */
+.preview-contenedor {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border: 1px dashed #cccccc;
+    border-radius: 8px;
+    max-width: 400px;              /* Ancho máximo razonable para la tarjeta */
+}
+
+/* Alineación limpia en fila */
+.preview-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preview-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.preview-nombre {
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;       /* Recorta el nombre largo con "..." */
+}
+
+.preview-tamano {
+    font-size: 11px;
+    color: #666;
+}
